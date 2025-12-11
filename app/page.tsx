@@ -4,7 +4,6 @@ import { parseMarkdown } from "./src/utils/loadNews";
 
 export default function Home() {
   const news = parseMarkdown();
-  console.log(news);
   return (
     <main className="container">
       {news
@@ -17,8 +16,8 @@ export default function Home() {
           <div className="news-grid">
             {news
               .filter(item => item.type==='news')
-              .map(({title, image, description}) => 
-              <Article key={title} title={title} image={image} description={description} />)
+              .map((item) => 
+              <Article key={item.title} data={item} />)
             }
           </div>
           <a href="#" className="more-news">Więcej wiadomości →</a>
