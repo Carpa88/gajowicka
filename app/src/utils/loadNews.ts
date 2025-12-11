@@ -53,8 +53,10 @@ export function parseMarkdown(): ActivityType[] {
         );
         continue;
       }
-
+      
       if (opisMode) {
+        if (clean === "---") continue;
+        if (clean.length === 0) continue; 
         descriptionLines.push(clean);
       }
     }
