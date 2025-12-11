@@ -1,0 +1,247 @@
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+* {
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-raleway), Arial, sans-serif;
+  font-weight: 400;
+  background: #ffffff;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  color:#3E0D0D;
+  font-style: italic;
+  text-decoration: none;
+}
+header {
+  background:  linear-gradient(135deg, #3E0D0D, #591616, #752525, #8C3832, #3E0D0D);
+  color: white;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--font-pirata),  serif;
+  font-size: 4rem;
+  font-weight: 400;
+  font-style: normal;
+  word-spacing: 1em;
+  letter-spacing: 0.2em;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Slider */
+.event-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.event-slide {
+  display: flex;
+  align-items: center;
+  position: relative;
+  scroll-snap-align: start;
+  border-radius: 10px;
+  overflow: hidden;
+   background-image: 
+    linear-gradient(to right, #f4f4f4 40%, rgba(244,244,244,0) 100%), 
+    url('../public/event1.jpg');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+.event-text {
+  width: 50%;
+  padding: 2rem;
+  z-index: 2;
+}
+.event-text {
+  width: 50%;
+  padding: 2rem;
+  z-index: 2;
+  color: #000; /* цвет текста */
+}
+
+.event-image {
+  width: 50%;
+  position: relative; /* база для абсолютного позиционирования */
+  overflow: hidden;   /* чтобы изображение не вылезало за контейнер */
+}
+
+.event-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;      /* изображение выходит немного за блок справа */
+  height: 100%;
+  object-fit: cover;
+
+  mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 0%);
+  mask-repeat: no-repeat;
+  mask-size: cover;
+}
+
+.section-title {
+  font-family: var(--font-pirata), serif;
+  font-weight: 400;
+  font-size: 2rem;
+  margin: 2rem 0 1rem;
+  color: #3E0D0D;
+  letter-spacing: 0.1em;
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);; 
+  grid-template-rows: repeat(auto-fill, minmax(auto, 25rem));              
+  gap: 1rem;
+  overflow: hidden;                    
+  padding: 10px 0;
+}
+
+.news-item {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 1em;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news-grid > article:nth-child(1) {
+  grid-column: span 2;
+  grid-row: 1;
+}
+
+.news-item img {
+  width: 100%;
+  height: 30%;
+  object-fit: cover;
+  border-radius: 6px;
+  filter: brightness(0.85) opacity(80%);
+  margin-bottom: 0.8rem;
+}
+
+.news-item p {
+  flex-grow: 1;            /* заполняет всё оставшееся пространство */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0.8rem 0;
+}
+
+
+.more-news {
+  display: inline-block;
+  margin-top: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.more-news:hover {
+  text-decoration: underline;
+}
+
+
+.news-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem; /* расстояние между значком и ссылкой */
+  margin-top: auto; /* прижимает блок к низу карточки */
+}
+
+.news-footer a {
+  font-size: 0.8em;
+}
+
+.news-footer a:hover {
+  text-decoration: underline;
+}
+
+.source-link {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+}
+
+.classes-block {
+  background: #eef2f5;
+  padding: 1.5rem;
+  border-radius: 10px;
+}
+
+.to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #3E0D0D;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  display: none;
+  font-size: 0.9rem;
+}
+
+.classes-block {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+
+.block-day {
+  padding: 0.8em;
+  min-width: 16em;
+}
+
+.today {
+  border: #3E0D0D 0.1em solid;
+  border-radius: 1em;
+}
+
+footer {
+  background: linear-gradient(135deg, #3E0D0D, #591616, #752525, #8C3832, #3E0D0D);
+  color: #fff;
+  padding: 2.5rem 1rem;
+  margin-top: 3rem;
+  text-align: center;
+}
