@@ -8,10 +8,10 @@ import { ActivityType } from "../src/types";
       <div className="event-slide">
         <div className="event-text">
           <h3>{data.title}</h3>
-          <p><strong>Miejsce:</strong>{data.place}</p>
-          <p><strong>Czas:</strong>{data.time}</p>
+          <p><strong>Miejsce: </strong>{data.place}</p>
+          <p><strong>Czas: </strong>{data.time}</p>
           <p>{data.description}</p>
-          <p><a href="#" className="source-link">Strona Centrum Gajowickiego</a></p>
+          {!!data.source?.name && <p><a href={data.source.url} className="source-link">{data.source?.name}</a></p>}
         </div>
       </div>
     </div>

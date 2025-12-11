@@ -18,9 +18,8 @@ export function parseMarkdown(): ActivityType[] {
     let image: string | undefined;
     let place: string | undefined;
     let time: string | undefined;
-    let source: string | undefined;
+    let source = {name: '', url: ''};
 
-    // Многострочный Opis
     const descriptionLines: string[] = [];
     let opisMode = false;
 
@@ -43,7 +42,15 @@ export function parseMarkdown(): ActivityType[] {
       }
 
       if (clean.startsWith("- **Źródło:**")) {
-        source = clean.replace(/- \*\*Źródło:\*\*\s*/, "").trim();
+        const src = clean.replace(/- \*\*Źródło:\*\*\s*/, "").trim();
+
+        // Делим по " – " (длинное тире)
+        const parts = src.split(" – ");
+
+        const name = parts[0]?.trim();
+        const url = parts[1]?.trim();
+
+        source = { name, url };
         continue;
       }
       if (clean.startsWith("- **Opis:**")) {
@@ -53,7 +60,7 @@ export function parseMarkdown(): ActivityType[] {
         );
         continue;
       }
-      
+
       if (opisMode) {
         if (clean === "---") continue;
         if (clean.length === 0) continue; 
@@ -71,7 +78,7 @@ export function parseMarkdown(): ActivityType[] {
       image,
       place,
       time,
-      source,
+      source: {name: source.name, url: source.url},
       description,
     };
   });
