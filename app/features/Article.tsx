@@ -4,7 +4,9 @@ import Image from 'next/image'
 export default function Article({ data }:{ data: ActivityType } ){
   return (
     <article className="news-item">
-      {!!data.image && <Image src={data.image} alt={`Zdięcie ${data.title}`} />}
+      {!!data.image && <div className="news-image">
+        <Image src={data.image} fill alt={`Zdięcie ${data.title}`} style={{objectFit: "cover" }} />
+      </div>}
       <h3>{data.title}</h3>
       <p>{data.description}</p>
       <div className="news-footer">
