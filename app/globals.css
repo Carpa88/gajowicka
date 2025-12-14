@@ -1,18 +1,8 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 * {
   margin:0;
   padding:0;
   box-sizing: border-box;
+  line-height: 2em;
 }
 
 html,
@@ -44,8 +34,8 @@ header {
 
 h1 {
   margin: 0;
-  font-family: var(--font-pirata),  serif;
-  font-size: 4rem;
+  font-family: var(--font-aboreto),  serif;
+  font-size: 3rem;
   font-weight: 400;
   font-style: normal;
   word-spacing: 1em;
@@ -87,12 +77,10 @@ h1 {
   width: 50%;
   padding: 2rem;
   z-index: 2;
-}
-.event-text {
-  width: 50%;
-  padding: 2rem;
-  z-index: 2;
   color: #000; /* цвет текста */
+}
+.source-link a {
+  margin-top: 1em;
 }
 
 .event-image {
@@ -115,9 +103,9 @@ h1 {
 }
 
 .section-title {
-  font-family: var(--font-pirata), serif;
+  font-family: var(--font-aboreto), serif;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin: 2rem 0 1rem;
   color: #3E0D0D;
   letter-spacing: 0.1em;

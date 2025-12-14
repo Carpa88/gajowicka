@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Raleway, Pirata_One} from "next/font/google";
+import { Geist, Geist_Mono, Raleway, Aboreto } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -18,8 +18,8 @@ const raleway = Raleway({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const pirata = Pirata_One({
-  variable: "--font-pirata",
+const aboreto = Aboreto({
+  variable: "--font-aboreto",
   subsets: ["latin"],
   weight: "400",
 });
@@ -48,7 +48,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl">
-      <body className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${pirata.variable}`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${aboreto.variable}`}>
         <header>
           <h1>Wiadomości Gajowickie</h1>
         </header>
