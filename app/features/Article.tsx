@@ -1,17 +1,31 @@
-import { ActivityType } from "../src/types";
-import Image from 'next/image'
+import { ActivityType } from '../src/types';
+import Image from 'next/image';
 
-export default function Article({ data }:{ data: ActivityType } ){
+export default function Article({ data }: { data: ActivityType }) {
   return (
     <article className="news-item">
-      {!!data.image && <div className="news-image">
-        <Image src={data.image} fill alt={`Zdięcie ${data.title}`} style={{objectFit: "cover" }} />
-      </div>}
+      {!!data.image && (
+        <div className="news-image">
+          <Image
+            src={data.image}
+            fill
+            alt={`Zdięcie ${data.title}`}
+            style={{ objectFit: 'cover' }}
+          />
+        </div>
+      )}
       <h3>{data.title}</h3>
       <p>{data.description}</p>
       <div className="news-footer">
-        <a href="#" className="listen-btn">🔊 Słuchaj</a>
-        {!!data.source?.name && <a href={data.source.url} className="source-link">{data.source?.name}</a>}
+        <a href="#" className="listen-btn">
+          🔊 Słuchaj
+        </a>
+        {!!data.source?.name && (
+          <a href={data.source.url} className="source-link">
+            {data.source?.name}
+          </a>
+        )}
       </div>
     </article>
-  )}
+  );
+}
