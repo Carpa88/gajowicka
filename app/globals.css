@@ -1,8 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-color: #3e0d0d;
+  --events-height: 60vh;
+  --fs-p: 0.95rem;
+
+  --fs-h1: 1.75rem;
+  --fs-h2: 1.5rem;
+  --fs-h3: 1.25rem;
+  --fs-h4: 1.125rem;
+  --fs-h5: 1rem;
+  --fs-h6: 0.875rem;
+
+  --lh-body: 1.6;
+  --lh-heading: 1.25;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --events-height: 70vh;
+
+    --fs-p: 1rem;
+
+    --fs-h1: 2rem;
+    --fs-h2: 1.75rem;
+    --fs-h3: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --events-height: 70vh;
+    --fs-p: 1.05rem;
+
+    --fs-h1: 2.25rem;
+    --fs-h2: 2rem;
+    --fs-h3: 1.75rem;
+    --fs-h4: 1.25rem;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --fs-p: 1.125rem;
+
+    --fs-h1: 2.75rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 2rem;
+    --fs-h4: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --events-height: 60vh;
+
+    --fs-p: 1.15rem;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.5rem;
+    --fs-h3: 2.125rem;
+    --fs-h4: 1.75rem;
+  }
+}
+
+@layer base {
+  body {
+    font-family: var(--font-raleway), Arial, sans-serif;
+    background: #ffffff;
+    color: rgb(36, 36, 36);
+    font-weight: 400;
+  }
+
+  p {
+    font-size: var(--fs-p);
+    line-height: var(--lh-body);
+  }
+
+  h1 {
+    font-family: var(--font-aboreto), serif;
+    font-size: var(--fs-h1);
+    line-height: var(--lh-heading);
+    font-weight: 400;
+    font-style: normal;
+    word-spacing: 1em;
+    letter-spacing: 0.2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  h2 {
+    font-family: var(--font-aboreto), serif;
+    font-size: var(--fs-h2);
+    line-height: var(--lh-heading);
+    font-weight: 600;
+  }
+
+  h3 {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-heading);
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: var(--fs-h4);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+  }
+
+  h5 {
+    font-size: var(--fs-h5);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+  }
+
+  h6 {
+    font-family: var(--font-aboreto), serif;
+    font-size: var(--fs-h6);
+    line-height: var(--lh-heading);
+    font-weight: 500;
+  }
+}
+
 * {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  line-height: 2em;
 }
 
 html,
@@ -11,36 +134,23 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  margin: 0;
-  font-family: var(--font-raleway), Arial, sans-serif;
-  font-weight: 400;
-  background: #ffffff;
-  color: #333;
-  line-height: 1.6;
+a {
+  color: var(--main-color);
+  font-style: italic;
 }
 
-a {
-  color:#3E0D0D;
-  font-style: italic;
-  text-decoration: none;
-}
 header {
-  background:  linear-gradient(135deg, #3E0D0D, #591616, #752525, #8C3832, #3E0D0D);
+  background: linear-gradient(
+    135deg,
+    #3e0d0d,
+    #591616,
+    #752525,
+    #8c3832,
+    #3e0d0d
+  );
   color: white;
   padding: 2rem 1rem;
   text-align: center;
-}
-
-h1 {
-  margin: 0;
-  font-family: var(--font-aboreto),  serif;
-  font-size: 3rem;
-  font-weight: 400;
-  font-style: normal;
-  word-spacing: 1em;
-  letter-spacing: 0.2em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .container {
@@ -50,23 +160,21 @@ h1 {
 }
 
 /* Slider */
-.event-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1rem;
-  padding-bottom: 1rem;
-}
 
 .event-slide {
   display: flex;
-  align-items: center;
+  flex-direction: column; /* 🔥 КЛЮЧ */
+  align-items: stretch; /* 🔥 НЕ center */
+  height: 100%;
   position: relative;
   scroll-snap-align: start;
   border-radius: 10px;
   overflow: hidden;
-   background-image: 
-    linear-gradient(to right, #f4f4f4 40%, rgba(244,244,244,0) 100%), 
+  background-image: linear-gradient(
+      to right,
+      #f4f4f4 40%,
+      rgba(244, 244, 244, 0) 100%
+    ),
     url('../public/event1.jpg');
   background-size: cover;
   background-position: right center;
@@ -74,32 +182,19 @@ h1 {
 }
 
 .event-text {
-  width: 50%;
+  width: 60%;
   padding: 2rem;
-  z-index: 2;
-  color: #000; /* цвет текста */
-}
-.source-link a {
-  margin-top: 1em;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
 }
 
 .event-image {
   width: 50%;
   position: relative; /* база для абсолютного позиционирования */
-  overflow: hidden;   /* чтобы изображение не вылезало за контейнер */
-}
-
-.event-image img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 120%;      /* изображение выходит немного за блок справа */
-  height: 100%;
-  object-fit: cover;
-
-  mask-image: linear-gradient(to left, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 0%);
-  mask-repeat: no-repeat;
-  mask-size: cover;
+  overflow: hidden; /* чтобы изображение не вылезало за контейнер */
 }
 
 .section-title {
@@ -107,23 +202,23 @@ h1 {
   font-weight: 400;
   font-size: 1.5rem;
   margin: 2rem 0 1rem;
-  color: #3E0D0D;
+  color: #3e0d0d;
   letter-spacing: 0.1em;
 }
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(3, auto);; 
-  grid-template-rows: repeat(auto-fill, minmax(auto, 25rem));              
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(auto-fill, minmax(auto, 25rem));
   gap: 1rem;
-  overflow: hidden;                    
+  overflow: hidden;
   padding: 10px 0;
 }
 
 .news-item {
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   padding: 1em;
 
   display: flex;
@@ -148,12 +243,11 @@ h1 {
 }
 
 .news-item p {
-  flex-grow: 1;            /* заполняет всё оставшееся пространство */
+  flex-grow: 1; /* заполняет всё оставшееся пространство */
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 0.8rem 0;
 }
-
 
 .more-news {
   display: inline-block;
@@ -165,7 +259,6 @@ h1 {
 .more-news:hover {
   text-decoration: underline;
 }
-
 
 .news-footer {
   display: flex;
@@ -202,7 +295,7 @@ h1 {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #3E0D0D;
+  background: #3e0d0d;
   color: white;
   padding: 0.8rem 1.2rem;
   border-radius: 50px;
@@ -223,12 +316,19 @@ h1 {
 }
 
 .today {
-  border: #3E0D0D 0.1em solid;
+  border: #3e0d0d 0.1em solid;
   border-radius: 1em;
 }
 
 footer {
-  background: linear-gradient(135deg, #3E0D0D, #591616, #752525, #8C3832, #3E0D0D);
+  background: linear-gradient(
+    135deg,
+    #3e0d0d,
+    #591616,
+    #752525,
+    #8c3832,
+    #3e0d0d
+  );
   color: #fff;
   padding: 2.5rem 1rem;
   margin-top: 3rem;
