@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { ActivityType } from '../src/types';
-import TitleSection from './TitleSection';
 import FullArticle from './FullArticle';
 import Inside from './Inside';
 
@@ -25,8 +24,7 @@ const Events = ({ events }: { events: ActivityType[] }) => {
       className="w-full"
       style={{ height: 'var(--events-height)' }}
     >
-      <TitleSection title="Nadchodzące wydarzenia" />
-
+      <h2>Nadchodzące wydarzenia</h2>
       <div className="relative w-full overflow-hidden">
         <div
           className="flex flex-row transition-transform duration-700 ease-in-out"

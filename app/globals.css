@@ -4,7 +4,12 @@
 
 :root {
   --main-color: #3e0d0d;
+
+  --container-max: 1200px;
+  --container-padding: 1rem;
+
   --events-height: 60vh;
+
   --fs-p: 0.95rem;
 
   --fs-h1: 1.75rem;
@@ -22,31 +27,39 @@
   :root {
     --events-height: 70vh;
 
+    --container-padding: 1.25rem;
+
     --fs-p: 1rem;
 
     --fs-h1: 2rem;
-    --fs-h2: 1.75rem;
-    --fs-h3: 1.5rem;
+    --fs-h2: 1.5rem;
+    --fs-h3: 1.25rem;
   }
 }
 
 @media (min-width: 768px) {
   :root {
     --events-height: 70vh;
+
+    --container-padding: 1.5rem;
+
     --fs-p: 1.05rem;
 
     --fs-h1: 2.25rem;
-    --fs-h2: 2rem;
+    --fs-h2: 1.75rem;
     --fs-h3: 1.75rem;
     --fs-h4: 1.25rem;
   }
 }
 @media (min-width: 1024px) {
   :root {
+    --container-padding: 2rem;
+    --events-height: 60vh;
+
     --fs-p: 1.125rem;
 
     --fs-h1: 2.75rem;
-    --fs-h2: 2.25rem;
+    --fs-h2: 2.15rem;
     --fs-h3: 2rem;
     --fs-h4: 1.5rem;
   }
@@ -56,21 +69,44 @@
   :root {
     --events-height: 60vh;
 
+    --container-max: 1280px;
+
     --fs-p: 1.15rem;
 
-    --fs-h1: 3rem;
-    --fs-h2: 2.5rem;
+    --fs-h1: 3.5rem;
+    --fs-h2: 2.3rem;
     --fs-h3: 2.125rem;
     --fs-h4: 1.75rem;
   }
 }
 
 @layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+  }
+
   body {
     font-family: var(--font-raleway), Arial, sans-serif;
     background: #ffffff;
     color: rgb(36, 36, 36);
     font-weight: 400;
+  }
+
+  a {
+    color: var(--main-color);
+    font-style: italic;
   }
 
   p {
@@ -94,6 +130,8 @@
     font-size: var(--fs-h2);
     line-height: var(--lh-heading);
     font-weight: 600;
+    letter-spacing: 0.1em;
+    padding: 1em 0 0.75em;
   }
 
   h3 {
@@ -122,88 +160,27 @@
   }
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@layer components {
+  .layout-container {
+    max-width: var(--container-max);
+    padding: 0 var(--container-padding);
+    margin: 0 auto;
+    width: 100%;
+  }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-a {
-  color: var(--main-color);
-  font-style: italic;
-}
-
-header {
-  background: linear-gradient(
-    135deg,
-    #3e0d0d,
-    #591616,
-    #752525,
-    #8c3832,
-    #3e0d0d
-  );
-  color: white;
-  padding: 2rem 1rem;
-  text-align: center;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-/* Slider */
-
-.event-slide {
-  display: flex;
-  flex-direction: column; /* 🔥 КЛЮЧ */
-  align-items: stretch; /* 🔥 НЕ center */
-  height: 100%;
-  position: relative;
-  scroll-snap-align: start;
-  border-radius: 10px;
-  overflow: hidden;
-  background-image: linear-gradient(
-      to right,
-      #f4f4f4 40%,
-      rgba(244, 244, 244, 0) 100%
-    ),
-    url('../public/event1.jpg');
-  background-size: cover;
-  background-position: right center;
-  background-repeat: no-repeat;
-}
-
-.event-text {
-  width: 60%;
-  padding: 2rem;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-}
-
-.event-image {
-  width: 50%;
-  position: relative; /* база для абсолютного позиционирования */
-  overflow: hidden; /* чтобы изображение не вылезало за контейнер */
-}
-
-.section-title {
-  font-family: var(--font-aboreto), serif;
-  font-weight: 400;
-  font-size: 1.5rem;
-  margin: 2rem 0 1rem;
-  color: #3e0d0d;
-  letter-spacing: 0.1em;
+  header {
+    background: linear-gradient(
+      135deg,
+      #3e0d0d,
+      #591616,
+      #752525,
+      #8c3832,
+      #3e0d0d
+    );
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
 }
 
 .news-grid {

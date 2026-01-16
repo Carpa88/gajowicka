@@ -33,10 +33,18 @@ const Inside = ({
   }, [event.description]);
 
   return (
-    <div className="min-w-full flex flex-col px-4 md:px-6 lg:px-8">
-      <div className="event-slide w-full">
+    <div className="min-w-full h-full flex flex-col px-4 md:px-6 lg:px-8 border-l-2 border-[var(--main-color)]">
+      <div
+        className="flex flex-col items-stretch h-full relative snap-start rounded-lg overflow-hidden bg-none
+
+                  sm:bg-[linear-gradient(to_right,#f4f4f4_40%,rgba(244,244,244,0)_100%),url('/event1.jpg')]
+                  sm:bg-cover md:bg-center md:bg-no-repeat
+
+                  border-2 border-[var(--main-color)] sm:border-0
+                "
+      >
         <div
-          className="event-text overflow-hidden relative"
+          className="w-full md:w-[60%] p-6 md:p-8 flex flex-col h-full min-h-0 overflow-hidden relative"
           style={{
             height: 'calc(var(--events-height) - 7rem)',
           }}

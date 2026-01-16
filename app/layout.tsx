@@ -50,7 +50,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${aboreto.variable}`}
       >
-        <header>
+        <header className="header">
           <h1>Wiadomości Gajowickie</h1>
         </header>
         {children}
