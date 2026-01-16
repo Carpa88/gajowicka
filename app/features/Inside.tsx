@@ -1,39 +1,14 @@
 'use client';
 
-import { useRef, useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { useRef, useState } from 'react';
 import { ActivityType } from '../src/types';
+import ReadMore from './ReadMore';
 
-const Inside = ({
-  event,
-  onClick,
-}: {
-  event: ActivityType;
-  onClick: Dispatch<SetStateAction<ActivityType | null>>;
-}) => {
+const Inside = ({ event }: { event: ActivityType }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [displayText, setDisplayText] = useState(event.description);
-  const [isOverflowed, setIsOverflowed] = useState(false);
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const fullText = event.description;
-    let truncated = fullText;
-
-    el.innerText = fullText;
-
-    while (el.scrollHeight > el.clientHeight && truncated.length > 0) {
-      truncated = truncated.slice(0, -1);
-      el.innerText = truncated + '...';
-    }
-
-    setDisplayText(el.innerText);
-    setIsOverflowed(el.innerText.slice(-3) === '...');
-  }, [event.description]);
-
   return (
-    <div className="min-w-full h-full flex flex-col px-4 md:px-6 lg:px-8 border-l-2 border-[var(--main-color)]">
+    <div className="min-w-full h-full flex flex-col px-4 md:px-6 lg:px-8 md:border-l-2 md:border-[var(--main-color)] border-0">
       <div
         className="flex flex-col items-stretch h-full relative snap-start rounded-lg overflow-hidden bg-none
 
@@ -90,14 +65,11 @@ const Inside = ({
                 {event.source.name}
               </a>
             )}
-            {isOverflowed && (
-              <button
-                onClick={() => onClick(event)}
-                className="mt-4 underline text-sm md:text-base"
-              >
-                Czytaj więcej
-              </button>
-            )}
+            <ReadMore
+              setDisplayText={setDisplayText}
+              containerRef={containerRef}
+              event={event}
+            />
           </div>
         </div>
       </div>

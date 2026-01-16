@@ -1,11 +1,22 @@
+'use client';
+
 import { ActivityType } from '../src/types';
 import Image from 'next/image';
+import ReadMore from './ReadMore';
+import { useRef, useState } from 'react';
 
-export default function Article({ data }: { data: ActivityType }) {
+const Article = ({ data, index }: { data: ActivityType; index: number }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [displayText, setDisplayText] = useState(data.description);
+
   return (
-    <article className="news-item">
+    <article
+      className={`news-item bg-white rounded-lg shadow-sm p-4 flex flex-col h-full overflow-hidden
+        ${index === 0 ? 'md:col-span-2 lg:col-span-2' : ''}
+      `}
+    >
       {!!data.image && (
-        <div className="news-image">
+        <div className="news-image w-full h-[40%] min-h-[10rem] rounded-md mb-3 overflow-hidden filter brightness-[0.85] opacity-80 relative">
           <Image
             src={data.image}
             fill
@@ -14,18 +25,30 @@ export default function Article({ data }: { data: ActivityType }) {
           />
         </div>
       )}
-      <h3>{data.title}</h3>
-      <p>{data.description}</p>
-      <div className="news-footer">
-        <a href="#" className="listen-btn">
-          🔊 Słuchaj
-        </a>
+      <h4>{data.title}</h4>
+      <p
+        ref={containerRef}
+        className="flex-grow overflow-hidden text-ellipsis py-3"
+      >
+        {displayText}
+      </p>
+      <div className="flex items-center justify-between gap-4 mt-auto">
         {!!data.source?.name && (
-          <a href={data.source.url} className="source-link">
-            {data.source?.name}
+          <a
+            href={data.source.url}
+            className="text-sm md:text-base hover:underline"
+          >
+            {data.source.name}
           </a>
         )}
+        <ReadMore
+          containerRef={containerRef}
+          setDisplayText={setDisplayText}
+          event={data}
+        />
       </div>
     </article>
   );
-}
+};
+
+export default Article;

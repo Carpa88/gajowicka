@@ -1,12 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { ActivityType } from '../src/types';
-import FullArticle from './FullArticle';
 import Inside from './Inside';
 
 const Events = ({ events }: { events: ActivityType[] }) => {
   const [index, setIndex] = useState(0);
-  const [openEvent, setOpenEvent] = useState<ActivityType | null>(null);
 
   useEffect(() => {
     if (events.length <= 1) return;
@@ -31,7 +29,7 @@ const Events = ({ events }: { events: ActivityType[] }) => {
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {events.map((event) => (
-            <Inside event={event} onClick={setOpenEvent} key={event.title} />
+            <Inside event={event} key={event.title} />
           ))}
         </div>
       </div>
@@ -52,7 +50,6 @@ const Events = ({ events }: { events: ActivityType[] }) => {
           />
         ))}
       </div>
-      {openEvent && <FullArticle item={openEvent} close={setOpenEvent} />}
     </section>
   );
 };
