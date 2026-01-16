@@ -109,7 +109,8 @@
     font-style: italic;
   }
 
-  p {
+  p,
+  a {
     font-size: var(--fs-p);
     line-height: var(--lh-body);
   }
@@ -181,76 +182,6 @@
     padding: 2rem 1rem;
     text-align: center;
   }
-}
-
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  grid-template-rows: repeat(auto-fill, minmax(auto, 25rem));
-  gap: 1rem;
-  overflow: hidden;
-  padding: 10px 0;
-}
-
-.news-item {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  padding: 1em;
-
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
-}
-
-.news-grid > article:nth-child(1) {
-  grid-column: span 2;
-  grid-row: 1;
-}
-
-.news-image {
-  width: 100%;
-  height: 40%;
-  min-height: 10rem;
-  /* object-fit: cover; */
-  border-radius: 6px;
-  filter: brightness(0.85) opacity(80%);
-  margin-bottom: 0.8rem;
-}
-
-.news-item p {
-  flex-grow: 1; /* заполняет всё оставшееся пространство */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding: 0.8rem 0;
-}
-
-.more-news {
-  display: inline-block;
-  margin-top: 1rem;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.more-news:hover {
-  text-decoration: underline;
-}
-
-.news-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem; /* расстояние между значком и ссылкой */
-  margin-top: auto; /* прижимает блок к низу карточки */
-}
-
-.news-footer a {
-  font-size: 0.8em;
-}
-
-.news-footer a:hover {
-  text-decoration: underline;
 }
 
 .source-link {
