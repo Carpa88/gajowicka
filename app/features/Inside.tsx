@@ -1,10 +1,16 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { ActivityType } from '../src/types';
 import ReadMore from './ReadMore';
 
-const Inside = ({ event }: { event: ActivityType }) => {
+const Inside = ({
+  event,
+  onReadMore,
+}: {
+  event: ActivityType;
+  onReadMore: Dispatch<SetStateAction<ActivityType | null>>;
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [displayText, setDisplayText] = useState(event.description);
   return (
@@ -69,6 +75,7 @@ const Inside = ({ event }: { event: ActivityType }) => {
               setDisplayText={setDisplayText}
               containerRef={containerRef}
               event={event}
+              onReadMore={onReadMore}
             />
           </div>
         </div>

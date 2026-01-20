@@ -2,17 +2,21 @@
 
 import { useState, useEffect, SetStateAction, RefObject } from 'react';
 import { ActivityType } from '../src/types';
-import FullArticle from './FullArticle';
 
 interface Props {
   setDisplayText: (value: SetStateAction<string>) => void;
   containerRef: RefObject<HTMLDivElement | null>;
   event: ActivityType;
+  onReadMore: (event: ActivityType) => void;
 }
 
-const ReadMore = ({ setDisplayText, containerRef, event }: Props) => {
+const ReadMore = ({
+  setDisplayText,
+  containerRef,
+  event,
+  onReadMore,
+}: Props) => {
   const [isOverflowed, setIsOverflowed] = useState(false);
-  const [openEvent, setOpenEvent] = useState<ActivityType | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -36,13 +40,12 @@ const ReadMore = ({ setDisplayText, containerRef, event }: Props) => {
     <>
       {isOverflowed && (
         <button
-          onClick={() => setOpenEvent(event)}
+          onClick={() => onReadMore(event)}
           className="hover:underline text-sm md:text-base italic black"
         >
           Czytaj więcej
         </button>
       )}
-      {openEvent && <FullArticle item={openEvent} close={setOpenEvent} />}
     </>
   );
 };

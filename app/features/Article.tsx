@@ -4,10 +4,12 @@ import { ActivityType } from '../src/types';
 import Image from 'next/image';
 import ReadMore from './ReadMore';
 import { useRef, useState } from 'react';
+import FullArticle from './FullArticle';
 
 const Article = ({ data, index }: { data: ActivityType; index: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [displayText, setDisplayText] = useState(data.description);
+  const [openEvent, setOpenEvent] = useState<ActivityType | null>(null);
 
   return (
     <article
@@ -45,8 +47,12 @@ const Article = ({ data, index }: { data: ActivityType; index: number }) => {
           containerRef={containerRef}
           setDisplayText={setDisplayText}
           event={data}
+          onReadMore={setOpenEvent}
         />
       </div>
+      {openEvent && (
+        <FullArticle item={openEvent} close={() => setOpenEvent(null)} />
+      )}
     </article>
   );
 };

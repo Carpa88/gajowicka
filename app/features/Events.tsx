@@ -2,9 +2,11 @@
 import { useState, useEffect } from 'react';
 import { ActivityType } from '../src/types';
 import Inside from './Inside';
+import FullArticle from './FullArticle';
 
 const Events = ({ events }: { events: ActivityType[] }) => {
   const [index, setIndex] = useState(0);
+  const [openEvent, setOpenEvent] = useState<ActivityType | null>(null);
 
   useEffect(() => {
     if (events.length <= 1) return;
@@ -29,7 +31,7 @@ const Events = ({ events }: { events: ActivityType[] }) => {
           style={{ transform: `translateX(-${index * 100}%)` }}
         >
           {events.map((event) => (
-            <Inside event={event} key={event.title} />
+            <Inside event={event} key={event.title} onReadMore={setOpenEvent} />
           ))}
         </div>
       </div>
@@ -50,6 +52,9 @@ const Events = ({ events }: { events: ActivityType[] }) => {
           />
         ))}
       </div>
+      {openEvent && (
+        <FullArticle item={openEvent} close={() => setOpenEvent(null)} />
+      )}
     </section>
   );
 };
