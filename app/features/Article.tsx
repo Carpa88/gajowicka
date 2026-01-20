@@ -30,7 +30,7 @@ const Article = ({ data, index }: { data: ActivityType; index: number }) => {
       <h4>{data.title}</h4>
       <p
         ref={containerRef}
-        className="flex-grow overflow-hidden text-ellipsis py-3"
+        className="flex-grow overflow-hidden py-3 line-clamp-4"
       >
         {displayText}
       </p>
